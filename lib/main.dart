@@ -1,0 +1,95 @@
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:flutter_lesson_49/homework/todos_and_notes/views/screens/password_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import 'homework/todos_and_notes/utils/app_constants.dart';
+import 'homework/todos_and_notes/views/screens/home_screen.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  void toggleThemeMode(bool value) async {
+    AppConstants.themeMode = value ? ThemeMode.dark : ThemeMode.light;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('isDark', '$value');
+    setState(() {});
+  }
+
+  void onBackgroundChanged(String imageUrl) async {
+    AppConstants.imageUrl = imageUrl;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('image', imageUrl);
+    setState(() {});
+  }
+
+  void onLanguageChanged(String language) async {
+    AppConstants.language = language;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setString('language', language);
+    setState(() {});
+  }
+
+  void onColorChanged(Color color) async {
+    AppConstants.appColor = color;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    preferences.setInt('app-color', color.value);
+    setState(() {});
+  }
+
+  void onTextChanged(Color color, double size) async {
+    AppConstants.textSize = size;
+    AppConstants.textColor = color;
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+
+    preferences.setString(
+      'text-val',
+      jsonEncode(
+        {
+          'text-size': size,
+          'text-color': color.value,
+        },
+      ),
+    );
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    AppConstants().setConstants().then((_) {
+      setState(() {});
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppConstants.appColor,
+        ),
+      ),
+      darkTheme: ThemeData.dark(),
+      themeMode: AppConstants.themeMode,
+      home:PinScreen(
+        onThemeChanged: toggleThemeMode,
+        onBackgroundChanged: onBackgroundChanged,
+        onLanguageChanged: onLanguageChanged,
+        onColorChanged: onColorChanged,
+        onTextChanged: onTextChanged,
+      ),
+    );
+  }
+}
