@@ -19,8 +19,8 @@ class Todo {
       todoTitle: json['title'] as String? ?? "",
       todoDescription: json['description'] as String? ?? "",
       todoCreatedDate: json['createdDate'] as String? ?? "",
-      //isDone: json["isDone"] as bool? ?? false,
-      isDone: json['isDone'] == 'true' || json['isDone'] == true,
+      isDone: json["isDone"] as bool? ?? false,
+      //isDone: json['isDone'] == 'true' || json['isDone'] == true,
     );
   }
 

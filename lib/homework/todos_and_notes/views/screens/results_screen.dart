@@ -38,44 +38,57 @@ class _ResultsScreenState extends State<ResultsScreen> {
           Center(
             child: Column(
               children: [
-                Column(
-                  children: [
-                    Text(
-                      '$doneTodo',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 40,
-                          ),
-                    ),
-                    const Text(
-                      'Done',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                        //color: Colors.green,
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.green.withOpacity(0.5),
+                  child: Column(
+                    children: [
+                      Text(
+                        '$doneTodo',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 40,color: Colors.white
+                            ),
                       ),
-                    ),
-                  ],
+                      const Text(
+                        'Done',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                          color: Colors.white
+                          //color: Colors.green,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 100),
-                Column(
-                  children: [
-                    Text(
-                      '$unDoneTodo',
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 40,
-                          ),
-                    ),
-                    const Text(
-                      'Not Done',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
+                  Container(
+                    width: 100,
+                    height: 100,
+                    color: Colors.red.withOpacity(0.5),
+                    child: Column(
+                    children: [
+                      Text(
+                        '$unDoneTodo',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 40,
+                          color: Colors.white
+                            ),
                       ),
-                    ),
-                  ],
-                ),
+                      const Text(
+                        'Not Done',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                          color: Colors.white
+                        ),
+                      ),
+                    ],
+                                    ),
+                  ),
               ],
             ),
           ),

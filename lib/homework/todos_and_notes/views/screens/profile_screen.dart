@@ -27,21 +27,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 200,
-            width: 200,
+            height: 150,
+            width: 150,
             clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(shape: BoxShape.circle),
-            child: Image.network(
+            decoration: BoxDecoration(shape: BoxShape.rectangle),
+            child: _userInfoViewModel.userInfo.profilePictureUrl.isNotEmpty
+                ? Image.network(
               _userInfoViewModel.userInfo.profilePictureUrl,
               fit: BoxFit.cover,
+              loadingBuilder: (BuildContext context, Widget child,
+                  ImageChunkEvent? loadingProgress) {
+                if (loadingProgress == null) {
+                  return child;
+                } else {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                          loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                }
+              },
+              errorBuilder: (BuildContext context, Object error,
+                  StackTrace? stackTrace) {
+                return const Icon(
+                  Icons.broken_image,
+                  size: 150,
+                );
+              },
+            )
+                : const Icon(
+              Icons.person,
+              size: 150,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
-          Text("Your name: ${_userInfoViewModel.userInfo.userName}"),
-          Text('Your surname: ${_userInfoViewModel.userInfo.userSurname}'),
-          Text('Your phone number: ${_userInfoViewModel.userInfo.phoneNumber}'),
+          Text("Name: ${_userInfoViewModel.userInfo.userName}"),
+          Text('Surname: ${_userInfoViewModel.userInfo.userSurname}'),
+          Text('Phone number: ${_userInfoViewModel.userInfo.phoneNumber}'),
           TextButton(
             onPressed: () {
               showModalBottomSheet(
@@ -62,7 +89,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             children: [
                               TextFormField(
                                 initialValue:
-                                    _userInfoViewModel.userInfo.userName,
+                                _userInfoViewModel.userInfo.userName,
                                 validator: (value) {
                                   if (value == null || value.trim().isEmpty) {
                                     return 'Enter your name';
@@ -77,7 +104,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               TextFormField(
                                 initialValue:
-                                    _userInfoViewModel.userInfo.userSurname,
+                                _userInfoViewModel.userInfo.userSurname,
                                 validator: (value) {
                                   if (value == null || value.trim().isEmpty) {
                                     return 'Enter your surname';
@@ -92,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               TextFormField(
                                 initialValue:
-                                    _userInfoViewModel.userInfo.phoneNumber,
+                                _userInfoViewModel.userInfo.phoneNumber,
                                 validator: (value) {
                                   if (value == null || value.trim().isEmpty) {
                                     return 'Enter your phone number';
@@ -134,7 +161,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     Navigator.of(context).pop();
                                   }
                                 },
-                                child: Text('Save'),
+                                child: const Text('Save'),
                               ),
                             ],
                           ),
@@ -145,8 +172,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 },
               );
             },
-            child: FilledButton(onPressed: () {}, child: Text("Edit")),
-          )
+            child: const Text(
+              "Edit",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
+            ),
+          ),
         ],
       ),
     );

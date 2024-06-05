@@ -1,11 +1,12 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_lesson_49/homework/todos_and_notes/notifier/notes_notifier.dart';
+import 'package:flutter_lesson_49/homework/todos_and_notes/viewmodels/notes_view_model.dart';
 import 'package:flutter_lesson_49/homework/todos_and_notes/views/screens/password_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'homework/todos_and_notes/utils/app_constants.dart';
-import 'homework/todos_and_notes/views/screens/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -74,21 +75,24 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: AppConstants.appColor,
+    return NoteNotifier(
+      noteController: NoteController(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            backgroundColor: AppConstants.appColor,
+          ),
         ),
-      ),
-      darkTheme: ThemeData.dark(),
-      themeMode: AppConstants.themeMode,
-      home:PinScreen(
-        onThemeChanged: toggleThemeMode,
-        onBackgroundChanged: onBackgroundChanged,
-        onLanguageChanged: onLanguageChanged,
-        onColorChanged: onColorChanged,
-        onTextChanged: onTextChanged,
+        darkTheme: ThemeData.dark(),
+        themeMode: AppConstants.themeMode,
+        home:PinScreen(
+          onThemeChanged: toggleThemeMode,
+          onBackgroundChanged: onBackgroundChanged,
+          onLanguageChanged: onLanguageChanged,
+          onColorChanged: onColorChanged,
+          onTextChanged: onTextChanged,
+        ),
       ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:http/http.dart' as http;
 
 import '../models/todo_model.dart';
 
+
 class TodoHttpService {
   Future<List<Todo>> getTodos() async {
     final Uri url =
@@ -12,7 +13,6 @@ class TodoHttpService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      /// checking whether data is null
       if (data == null) {
         return [];
       }
@@ -36,9 +36,10 @@ class TodoHttpService {
     Map<String, dynamic> todoData = {
       'title': todoTitle,
       'description': todoDescription,
-      'created-date': DateTime.now().toString(),
-      'is-done': false,
+      'createdDate': DateTime.now().toString(),
+      'isDone': false,
     };
+    print(todoData);
     final Uri url =
     Uri.parse('https://lesson46-7e4d7-default-rtdb.firebaseio.com/.json');
     final response = await http.post(
@@ -54,17 +55,18 @@ class TodoHttpService {
   Future<void> toggleTodo(
       {required String todoId, required bool todoStatus}) async {
     final Uri url = Uri.parse(
-        'https://lesson46-7e74d7-default-rtdb.firebaseio.com/$todoId.json');
-    Map<String, dynamic> todoData = {'is-done': todoStatus};
+        'https://lesson46-7e4d7-default-rtdb.firebaseio.com/$todoId.json');
+    Map<String, dynamic> todoData = {'isDone': todoStatus};
     final http.Response response = await http.patch(
       url,
       body: jsonEncode(todoData),
     );
+    //print(response.body);
   }
 
   Future<void> deleteTodo({required String todoId}) async {
     final Uri url = Uri.parse(
-        'https://lesson46-7e74d7-default-rtdb.firebaseio.com/$todoId.json');
+        'https://lesson46-7e4d7-default-rtdb.firebaseio.com/$todoId.json');
     await http.delete(url);
   }
 
@@ -74,7 +76,7 @@ class TodoHttpService {
     required String newTodoDescription,
   }) async {
     final Uri url = Uri.parse(
-        'https://lesson46-7e74d7-default-rtdb.firebaseio.com/$todoId.json');
+        'https://lesson46-7e4d7-default-rtdb.firebaseio.com/$todoId.json');
     Map<String, dynamic> todoData = {
       'title': newTodoTitle,
       'description': newTodoDescription,
@@ -85,6 +87,4 @@ class TodoHttpService {
       body: jsonEncode(todoData),
     );
   }
-
-
 }

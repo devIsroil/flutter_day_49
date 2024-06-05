@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_lesson_49/homework/todos_and_notes/views/screens/password_screen.dart';
-
-
 import '../../utils/app_constants.dart';
+import '../screens/course_admin_screen.dart';
 import '../screens/home_screen.dart';
 import '../screens/settings_screen.dart';
 
@@ -92,6 +91,34 @@ class CustomDrawer extends StatelessWidget {
             },
             title: Text(
               "Settings",
+              style: TextStyle(
+                color: AppConstants.textColor,
+                fontSize: AppConstants.textSize,
+              ),
+            ),
+            trailing: const Icon(
+              Icons.keyboard_arrow_right,
+            ),
+          ),
+          ListTile(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) {
+                    return AdminPage(
+                      onThemeChanged: onThemeChanged,
+                      onBackgroundChanged: onBackgroundChanged,
+                      onLanguageChanged: onLanguageChanged,
+                      onColorChanged: onColorChanged,
+                      onTextChanged: onTextChanged,
+                    );
+                  },
+                ),
+              );
+            },
+            title: Text(
+              "Course",
               style: TextStyle(
                 color: AppConstants.textColor,
                 fontSize: AppConstants.textSize,
