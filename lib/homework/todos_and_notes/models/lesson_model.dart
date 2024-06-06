@@ -5,16 +5,18 @@ class Lesson {
   final int lessonId;
   String lessonTitle;
   String lessonDescription;
-  String videoUrl;
-  List<Quiz> lessonQuiz;
+  String imageUrl;
+  //String videoUrl;
+  //List<Quiz> lessonQuiz;
 
   Lesson({
     required this.lessonId,
     required this.courseId,
     required this.lessonTitle,
     required this.lessonDescription,
-    required this.videoUrl,
-    required this.lessonQuiz,
+    required this.imageUrl
+    //required this.videoUrl,
+    //required this.lessonQuiz,
   });
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
@@ -23,10 +25,11 @@ class Lesson {
       courseId: json['course-id']as int? ?? 0,
       lessonTitle: json['lesson-title']as String? ?? "",
       lessonDescription: json['lesson-description']as String? ?? "",
-      videoUrl: json['lesson-videourl']as String? ?? "",
-      lessonQuiz: (json['lesson-quiz'] as List)
-          .map((quiz) => Quiz.fromJson(quiz as Map<String, dynamic>? ??{}))
-          .toList(),
+      imageUrl: json['lesson-image'] as String? ?? "",
+      // videoUrl: json['lesson-videourl']as String? ?? "",
+      // lessonQuiz: (json['lesson-quiz'] as List)
+      //     .map((quiz) => Quiz.fromJson(quiz as Map<String, dynamic>? ??{}))
+      //     .toList(),
     );
   }
 
@@ -36,8 +39,8 @@ class Lesson {
       'course-id': courseId,
       'lesson-title': lessonTitle,
       'lesson-description': lessonDescription,
-      'lesson-videourl': videoUrl,
-      'lesson-quiz': lessonQuiz,
+      // 'lesson-videourl': videoUrl,
+      // 'lesson-quiz': lessonQuiz,
     };
   }
 }

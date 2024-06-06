@@ -6,14 +6,14 @@ import '../../viewmodels/course_view_model.dart';
 import '../widgets/custom_drawer.dart';
 import '../widgets/custom_list_view_builder_container.dart';
 
-class AdminPage extends StatefulWidget {
+class CourseAdminScreen extends StatefulWidget {
   final ValueChanged<bool> onThemeChanged;
   final ValueChanged<String> onBackgroundChanged;
   final ValueChanged<String> onLanguageChanged;
   final ValueChanged<Color> onColorChanged;
   final Function(Color, double) onTextChanged;
 
-  const AdminPage({
+  const CourseAdminScreen({
     super.key,
     required this.onThemeChanged,
     required this.onBackgroundChanged,
@@ -23,10 +23,10 @@ class AdminPage extends StatefulWidget {
   });
 
   @override
-  State<AdminPage> createState() => _AdminPageState();
+  State<CourseAdminScreen> createState() => _CourseAdminScreenState();
 }
 
-class _AdminPageState extends State<AdminPage> {
+class _CourseAdminScreenState extends State<CourseAdminScreen> {
   final List<TextEditingController> _courseTextEditingControllers = [
     TextEditingController(),
     TextEditingController(),
@@ -116,17 +116,17 @@ class _AdminPageState extends State<AdminPage> {
                         onPressed: () {},
                         child: const Text('Save'),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => const AlertDialog(
-                              title: Text('Add quiz'),
-                            ),
-                          );
-                        },
-                        child: const Text('Add Quiz'),
-                      ),
+                      // TextButton(
+                      //   onPressed: () {
+                      //     showDialog(
+                      //       context: context,
+                      //       builder: (context) => const AlertDialog(
+                      //         title: Text('Add quiz'),
+                      //       ),
+                      //     );
+                      //   },
+                      //   child: const Text('Add Quiz'),
+                      // ),
                     ],
                   ),
                 );
@@ -150,23 +150,26 @@ class _AdminPageState extends State<AdminPage> {
                     courseDescription: _courseTextEditingControllers[1].text,
                     courseImageUrl: _courseTextEditingControllers[2].text,
                     courseLessons: [
+                      //Course(courseId: , courseTitle: courseTitle, courseDescription: courseDescription, courseImageUrl: courseImageUrl, courseLessons: courseLessons, coursePrice: coursePrice),
                       Lesson(
                         lessonId: 2,
                         courseId: 2,
+                        imageUrl: '',
+
                         lessonTitle: 'Programming',
                         lessonDescription: 'Flutter language',
-                        videoUrl: 'videoUrl',
-                        lessonQuiz: [
-                          Quiz(
-                            qCorrectAnswer: 0,
-                            qId: 1,
-                            qOptions: ['yes', 'no'],
-                            qQuestion: 'Yes or no',
-                          ),
-                        ],
+                        //videoUrl: 'videoUrl',
+                        // lessonQuiz: [
+                        //   Quiz(
+                        //     qCorrectAnswer: 0,
+                        //     qId: 1,
+                        //     qOptions: ['yes', 'no'],
+                        //     qQuestion: 'Yes or no',
+                        //   ),
+                        // ],
                       )
                     ],
-                    coursePrice: 2100000 ,
+                    coursePrice: 0,
                   );
                   showDialog(
                     context: context,
@@ -197,7 +200,7 @@ class _AdminPageState extends State<AdminPage> {
                     );
                   } else if (snapshot.hasError || !snapshot.hasData) {
                     return const Center(
-                      child: Text('error: snapshot'),
+                      child: Text('no courses'),
                     );
                   } else {
                     List<Course> courses = snapshot.data;

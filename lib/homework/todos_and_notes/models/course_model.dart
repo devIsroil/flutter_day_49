@@ -24,7 +24,7 @@ class Course {
       courseTitle: json['course-title']as String? ?? "" ,
       courseDescription: json['course-description'] as String? ?? "",
       courseImageUrl: json['course-image']as String? ?? "",
-      courseLessons: (json['course-lessons'] as List)
+      courseLessons: (json['course-lessons'] as List? ?? [])
           .map((lesson) => Lesson.fromJson(lesson as Map<String, dynamic>? ?? {}))
           .toList(),
       coursePrice: json['course-price'] as num? ?? 0,

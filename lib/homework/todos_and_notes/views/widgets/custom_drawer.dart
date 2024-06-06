@@ -106,7 +106,7 @@ class CustomDrawer extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                   builder: (ctx) {
-                    return AdminPage(
+                    return CourseAdminScreen(
                       onThemeChanged: onThemeChanged,
                       onBackgroundChanged: onBackgroundChanged,
                       onLanguageChanged: onLanguageChanged,

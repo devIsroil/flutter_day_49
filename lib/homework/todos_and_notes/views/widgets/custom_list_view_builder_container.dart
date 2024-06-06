@@ -59,7 +59,7 @@ class CustomListViewBuilderContainer extends StatelessWidget {
               ],
             ),
             if (isDelete)
-              TextButton(onPressed: onDeletePressed, child: Text('Delete course')),
+              TextButton(onPressed: onDeletePressed, child: const Text('Delete course')),
           ],
         ),
       ),
