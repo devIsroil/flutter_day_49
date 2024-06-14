@@ -1,0 +1,22 @@
+{
+  "todos": "Todolar",
+  "notes": "Eslatmalar",
+  "main": "Asosiy",
+  "results": "Natijalar",
+  "done": "Bajarilgan",
+  "notDone": "Bajarilmagan",
+  "fav": "Sevimli",
+  "cart": "Savatcha",
+  "totalPrice": "Umumiy narx",
+  "mainPage": "Asosiy sahifa",
+  "settings": "Sozlamalar",
+  "courseAdmin": "Administrator sahifasi",
+  "logOut": "Chiqish",
+  "night": "Tungi rejim",
+  "write": "Rasm URL manzilini yozing",
+  "color": "Rangni o‘zgartirish",
+  "password": "Parolni o‘zgartirish",
+  "style": "Matnni o‘zgartirish",
+  "save": "Saqlash",
+  "buy": "Sotib olish"
+}

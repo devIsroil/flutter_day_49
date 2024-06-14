@@ -1,0 +1,22 @@
+{
+  "todos": "Todos",
+  "notes": "Notes",
+  "main": "Main",
+  "results": "Results",
+  "done": "Done",
+  "notDone": "Not done",
+  "fav": "Favorite",
+  "cart": "Cart",
+  "totalPrice": "Total price",
+  "mainPage": "Main Page",
+  "settings": "Settings",
+  "courseAdmin": "Course admin",
+  "logOut": "Log out",
+  "night": "Night mode",
+  "write": "Write image url",
+  "color": "Change color",
+  "password": "Change password",
+  "style": "Change text style",
+  "save": "Save",
+  "buy": "Buy"
+}
